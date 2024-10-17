@@ -9,7 +9,7 @@ const { registerUser, updateSession } = useUserStore();
 
 async function register() {
   await registerUser(username.value);
-  void updateSession();
+  await updateSession();
   void router.push({ name: "Home" });
 }
 </script>

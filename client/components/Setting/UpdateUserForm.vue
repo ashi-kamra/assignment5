@@ -3,8 +3,8 @@ import { useUserStore } from "@/stores/user";
 import { ref } from "vue";
 
 let username = ref("");
-let currentPassword = ref("");
-let newPassword = ref("");
+//let currentPassword = ref("");
+//let newPassword = ref("");
 
 const { updateUserUsername, updateSession } = useUserStore();
 
