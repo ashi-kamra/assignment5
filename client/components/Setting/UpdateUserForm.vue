@@ -6,18 +6,12 @@ let username = ref("");
 let currentPassword = ref("");
 let newPassword = ref("");
 
-const { updateUserUsername, updateUserPassword, updateSession } = useUserStore();
+const { updateUserUsername, updateSession } = useUserStore();
 
 async function updateUsername() {
   await updateUserUsername(username.value);
   await updateSession();
   username.value = "";
-}
-
-async function updatePassword() {
-  await updateUserPassword(currentPassword.value, newPassword.value);
-  await updateSession();
-  currentPassword.value = newPassword.value = "";
 }
 </script>
 
