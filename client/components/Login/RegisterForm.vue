@@ -27,8 +27,6 @@ async function register() {
       <div class="pure-controls">
         <button type="submit" class="pure-button pure-button-primary">Register</button>
       </div>
-
-      //NOW NEED TO SEND BACK ID TO USER
     </fieldset>
   </form>
 </template>
