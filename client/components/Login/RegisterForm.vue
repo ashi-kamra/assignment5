@@ -5,11 +5,10 @@ import { ref } from "vue";
 
 const username = ref("");
 const id = ref(""); //need to get this from the back-end
-const { registerUser, loginUser, updateSession } = useUserStore();
+const { registerUser, updateSession } = useUserStore();
 
 async function register() {
   await registerUser(username.value);
-  await loginUser(username.value, id.value);
   void updateSession();
   void router.push({ name: "Home" });
 }
