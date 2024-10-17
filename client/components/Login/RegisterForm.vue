@@ -17,12 +17,12 @@ async function register() {
 
 <template>
   <form class="pure-form pure-form-aligned" @submit.prevent="register">
-    //what is @submit.prevents="register"
     <h3>Enter a username to register</h3>
     <fieldset>
       <div class="pure-control-group">
         <label for="aligned-name">Username</label>
         <input v-model.trim="username" type="text" id="aligned-name" placeholder="Username" required />
+        <p>You will be given a unique private id to login and make connections with</p>
       </div>
       <div class="pure-controls">
         <button type="submit" class="pure-button pure-button-primary">Register</button>
