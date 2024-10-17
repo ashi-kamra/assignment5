@@ -4,5 +4,11 @@ import { ref } from "vue";
 
 const connection_id = ref("");
 
-const { makeConnection } = useUserStore;
+const { makeConnection } = useUserStore();
+
+async function connection() {
+  await makeConnection(connection_id);
+  await updateSession();
+  void router.push({ name: "Home" });
+}
 </script>
