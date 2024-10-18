@@ -218,7 +218,7 @@ class Routes {
     //adding a label to a message
   }
 
-  @Router.delete("/echo/remove")
+  @Router.delete("/echo/remove") //should i add a query??
   async removeEcho(session: SessionDoc, message: ObjectId) {
     const sessionUser = Sessioning.getUser(session);
     const user = await User.getUserInfo(sessionUser);
