@@ -7,6 +7,7 @@ export const useUserStore = defineStore(
   "user",
   () => {
     const currentUsername = ref("");
+    const currentId = ref("");
 
     const isLoggedIn = computed(() => currentUsername.value !== "");
 
@@ -15,9 +16,10 @@ export const useUserStore = defineStore(
     };
 
     const registerUser = async (username: string) => {
-      await fetchy("/api/user/register", "POST", {
+      const userInfo = await fetchy("/api/user/register", "POST", {
         body: { username },
       });
+      currentId.value = userInfo.userId; //will it be able to get user Id? same type?
     };
 
     const loginUser = async (username: string, id: string) => {

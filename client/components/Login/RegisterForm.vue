@@ -3,12 +3,14 @@ import router from "@/router";
 import { useUserStore } from "@/stores/user";
 import { ref } from "vue";
 
+const { registerUser, updateSession, currentId } = useUserStore();
+
 const username = ref("");
-const id = ref(""); //need to get this from the back-end
-const { registerUser, updateSession } = useUserStore();
+const id = currentId; //getting the currentId from the store, does this work?
 
 async function register() {
   await registerUser(username.value);
+  await loginUser(username.value, id); //would this work??
   await updateSession();
   void router.push({ name: "Home" });
 }
