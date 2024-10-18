@@ -3,7 +3,7 @@ import router from "@/router";
 import { useUserStore } from "@/stores/user";
 import { ref } from "vue";
 
-const { registerUser, updateSession, currentId } = useUserStore();
+const { registerUser, updateSession, currentId, loginUser } = useUserStore();
 
 const username = ref("");
 const id = currentId; //getting the currentId from the store, does this work?
