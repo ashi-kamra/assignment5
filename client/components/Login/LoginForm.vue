@@ -33,7 +33,7 @@ async function login() {
   </form>
 </template>
 
-<style>
+<style scoped>
 h3 {
   display: flex;
   justify-content: center;
