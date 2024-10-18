@@ -63,6 +63,7 @@ export const useUserStore = defineStore(
 
     return {
       currentUsername,
+      currentId,
       isLoggedIn,
       registerUser,
       loginUser,
