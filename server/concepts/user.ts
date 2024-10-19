@@ -24,7 +24,7 @@ export default class UserConcept {
     await this.assertGoodCredentials(username);
     const userId: string = await this.generateUniqueUserId();
     const _id = await this.users.createOne({ username, userId }); //object id for the user itself in mongoDB
-    return { msg: "User created successfully!", user: await this.users.readOne({ _id }) };
+    return { msg: "User created successfully!", user: await this.users.readOne({ _id }), userId };
   }
 
   private async generateUniqueUserId() {
@@ -64,7 +64,7 @@ export default class UserConcept {
     return this.hideId(user);
   }
 
-  async getId(_id: ObjectId) {
+  private async getId(_id: ObjectId) {
     const user = await this.users.readOne({ _id });
     if (!user) {
       throw new NotFoundError("No user of this id exists!");

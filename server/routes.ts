@@ -157,7 +157,7 @@ class Routes {
   async registerUser(session: SessionDoc, username: string) {
     //registering a user
     Sessioning.isLoggedOut(session);
-    return await User.registerUser(username);
+    return await User.registerUser(username); //should also return the userId, how to access it?
   }
 
   @Router.patch("/users/username")

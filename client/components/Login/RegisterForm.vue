@@ -6,7 +6,7 @@ import { ref } from "vue";
 const { registerUser, updateSession, currentId, loginUser } = useUserStore();
 
 const username = ref("");
-const id = currentId; //getting the currentId from the store, does this work?
+const id = currentId.value; //getting the currentId from the store, does this work?
 
 async function register() {
   await registerUser(username.value);
