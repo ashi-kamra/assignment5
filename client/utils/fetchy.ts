@@ -42,6 +42,7 @@ export async function fetchy(
   };
 
   if (options.body) {
+    console.log("option", options.body);
     fetchOptions.body = JSON.stringify(options.body);
   }
 

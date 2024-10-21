@@ -20,7 +20,7 @@ export default class ConnectingConcept {
     await this.assertNotFriends(user1, user2);
     const _id1 = this.connections.createOne({ user1, user2 }); //do i need to create both?
     const _id2 = this.connections.createOne({ user2, user1 });
-    return { msg: "Connection successful made!", _id: await this.connections.readOne({ _id1 }), _id2: await this.connections.readOne({ _id2 }) };
+    return { msg: "Connection successful made!", user2, _id: await this.connections.readOne({ _id1 }), _id2: await this.connections.readOne({ _id2 }) };
   }
 
   async deleteConnection(user: ObjectId, connection: ObjectId) {

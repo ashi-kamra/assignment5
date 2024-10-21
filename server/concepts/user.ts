@@ -56,12 +56,16 @@ export default class UserConcept {
     return this.hideId(user);
   }
 
-  async getUserbyId(id: string) {
-    const user = await this.users.readOne({ userId: id });
+  async getUserbyUniqueId(userId: string) {
+    console.log("userId", userId);
+    const allUsers = await this.users.readMany({});
+    const user = await this.users.readOne({ userId: userId });
+    console.log("all users:", allUsers);
     if (!user) {
       throw new NotFoundError(`No user of this id exists!`);
     }
-    return this.hideId(user);
+
+    return user;
   }
 
   private async getId(_id: ObjectId) {

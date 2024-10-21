@@ -28,11 +28,11 @@ export const useUserStore = defineStore(
       });
     };
 
-    const makeConnection = async (connection_id: string) => {
-      await fetchy("api/connector", "POST", {
-        body: { connection_id }, //is this it? do i need smth else in body?
-      });
-    };
+    // const makeConnection = async (connection_id: string) => {
+    //   await fetchy("/api/connector", "POST", {
+    //     body: { connection_id }, //is this it? do i need smth else in body?
+    //   });
+    // };
 
     const updateSession = async () => {
       try {
@@ -72,7 +72,7 @@ export const useUserStore = defineStore(
       updateUserUsername,
       // updateUserPassword,
       deleteUser,
-      makeConnection,
+      //makeConnection,
     };
   },
   { persist: true },

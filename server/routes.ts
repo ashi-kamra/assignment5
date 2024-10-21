@@ -176,13 +176,14 @@ class Routes {
     //displaying a users homepage
   }
 
-  @Router.post("/connector")
-  async connect(session: SessionDoc, user2_id: string) {
+  @Router.post("/connector/:connection_id")
+  async connect(session: SessionDoc, connection_id: string) {
     const sessionUser = Sessioning.getUser(session);
     const user1 = await User.getUserInfo(sessionUser);
-    const user2 = await User.getUserbyId(user2_id);
+    console.log("user2 in router", connection_id);
+    const user2 = await User.getUserbyUniqueId(connection_id);
+    console.log("user2 in router", user2);
     return await Connecting.makeConnection(user1._id, user2._id);
-
     //making a new connection
   }
 

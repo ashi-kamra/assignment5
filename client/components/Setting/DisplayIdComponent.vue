@@ -3,7 +3,7 @@ import { useUserStore } from "@/stores/user";
 import { ref } from "vue";
 
 const { currentId } = useUserStore();
-const show = ref(true);
+const show = ref(false);
 
 async function logMessage() {
   console.log("Id", currentId);
