@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeMounted, ref } from "vue";
+import { fetchy } from "../../utils/fetchy";
+import { onBeforeMount, ref } from "vue";
 import FriendWidget from "@/components/Home/FriendWidget.vue";
 
 const loaded = ref(false);
@@ -15,7 +16,7 @@ async function makeWidgets() {
   friends.value = connections;
 }
 
-onBeforeMounted(async () => {
+onBeforeMount(async () => {
   await makeWidgets();
   loaded.value = true;
 });
