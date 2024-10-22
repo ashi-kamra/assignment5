@@ -16,10 +16,11 @@ export const useUserStore = defineStore(
     };
 
     const registerUser = async (username: string) => {
-      const userInfo = await fetchy("/api/user/register", "POST", {
+      const userInfo = await fetchy(`/api/user/register`, "POST", {
         body: { username },
       });
       currentId.value = userInfo.userId; //will it be able to get user Id? same type?
+      console.log(currentId.value);
     };
 
     const loginUser = async (username: string, id: string) => {
