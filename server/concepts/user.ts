@@ -32,6 +32,11 @@ export default class UserConcept {
     return userId;
   }
 
+  async delete(_id: ObjectId) {
+    await this.users.deleteOne({ _id });
+    return { msg: "User deleted!" };
+  }
+
   private async assertGoodCredentials(username: string) {
     if (!username) {
       throw new BadValuesError("Username must be non-empty!");

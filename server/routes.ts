@@ -53,7 +53,7 @@ class Routes {
   async deleteUser(session: SessionDoc) {
     const user = Sessioning.getUser(session);
     Sessioning.end(session);
-    return await Authing.delete(user);
+    return await User.delete(user);
   }
 
   @Router.post("/login")

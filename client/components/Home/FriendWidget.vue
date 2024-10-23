@@ -4,7 +4,7 @@ const props = defineProps(["connection_name", "connection_id"]);
 
 <template>
   <div class="friend-widget">
-    <span>{{ props.connection_name }}</span>
+    <p>{{ props.connection_name.username }}</p>
   </div>
 </template>
 

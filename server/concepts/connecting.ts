@@ -16,11 +16,11 @@ export default class ConnectingConcept {
     this.connections = new DocCollection<ConnectionDoc>(collectionName);
   }
 
-  async makeConnection(user1: ObjectId, user2: ObjectId) {
-    await this.assertNotFriends(user1, user2);
-    const _id1 = this.connections.createOne({ user1, user2 }); //do i need to create both?
-    const _id2 = this.connections.createOne({ user2, user1 });
-    return { msg: "Connection successful made!", user2, _id: await this.connections.readOne({ _id1 }), _id2: await this.connections.readOne({ _id2 }) };
+  async makeConnection(current_user: ObjectId, connection_user: ObjectId) {
+    await this.assertNotFriends(current_user, connection_user);
+    const _id1 = this.connections.createOne({ user1: current_user, user2: connection_user }); //do i need to create both?
+    const _id2 = this.connections.createOne({ user1: connection_user, user2: current_user });
+    return { msg: "Connection successful made!", connection_user, _id: await this.connections.readOne({ _id1 }), _id2: await this.connections.readOne({ _id2 }) };
   }
 
   async deleteConnection(user: ObjectId, connection: ObjectId) {
@@ -60,10 +60,14 @@ export default class ConnectingConcept {
   }
 
   async displayConnections(user: ObjectId) {
-    const connections = await this.connections.readMany({
-      $or: [{ user1: user }, { user2: user }],
-    });
-    return connections.map((connection) => (connection.user1.toString() === user.toString() ? connection.user2 : connection.user1));
+    // const connections = await this.connections.readMany({
+    //   $or: [{ user1: user }, { user2: user }],
+    // });
+    // console.log(connections);
+    // return connections.map((connection) => (connection.user1.toString() === user.toString() ? connection.user2 : connection.user1));
+    const connections = await this.connections.readMany({ user1: user });
+    console.log(connections);
+    return connections;
   }
 
   private async assertNotFriends(user1: ObjectId, user2: ObjectId) {
