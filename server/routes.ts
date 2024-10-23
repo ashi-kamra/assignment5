@@ -176,6 +176,11 @@ class Routes {
     //displaying a users homepage
   }
 
+  @Router.get("/homepage/connection")
+  async getFriendsName(_id: ObjectId) {
+    return User.getUserInfo(_id);
+  }
+
   @Router.post("/connector/:connection_id")
   async connect(session: SessionDoc, connection_id: string) {
     const sessionUser = Sessioning.getUser(session);
