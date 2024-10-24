@@ -6,6 +6,17 @@ import FriendWidget from "@/components/Home/FriendWidget.vue";
 const loaded = ref(false);
 let friends = ref([]);
 
+async function getNames(connection) {
+  let name;
+  try {
+    name = await fetchy(`/api/homepage/${connection}`, "GET");
+  } catch (_) {
+    return;
+  }
+  console.log(name);
+  return name.username;
+}
+
 async function makeWidgets() {
   let connectionList;
   try {
@@ -13,8 +24,10 @@ async function makeWidgets() {
   } catch (_) {
     return;
   }
-  friends.value = connectionList;
-  console.log("friends", friends.value);
+  for (let i = 0; i < connectionList.length; i++) {
+    friend[i] = connection[i].user2;
+  }
+  console.log("friends", friends);
 }
 
 onBeforeMount(async () => {

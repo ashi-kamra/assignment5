@@ -176,7 +176,7 @@ class Routes {
     //displaying a users homepage
   }
 
-  @Router.get("/homepage/connection")
+  @Router.get("/homepage/:id")
   async getFriendsName(_id: ObjectId) {
     return User.getUserInfo(_id);
   }
