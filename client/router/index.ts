@@ -2,10 +2,10 @@ import { storeToRefs } from "pinia";
 import { createRouter, createWebHistory } from "vue-router";
 
 import { useUserStore } from "@/stores/user";
+import MessagingForm from "../components/Messaging/MessagingForm.vue";
 import ConnectorView from "../views/ConnectorView.vue";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
-import MessagingView from "../views/MessagingView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 import SettingView from "../views/SettingView.vue";
 
@@ -30,9 +30,9 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: "/messaging/:receiver",
+      path: "/messaging/:receiverName/:receiverId",
       name: "Messaging",
-      component: MessagingView,
+      component: MessagingForm,
       meta: { requiresAuth: true },
     },
     {

@@ -6,13 +6,15 @@ let history = ref([]);
 let loaded = ref(false);
 
 const route = useRoute();
-const receiverId = route.params.id.toString();
+const receiverName = route.params.receiverName.toString();
+const receiverId = route.params.receiverId.toString();
 
 async function displayHistory() {
-  console.log(receiverId);
   try {
+    console.log(receiverId);
     history.value = await fetchy(`/api/connection/history/${receiverId}`, "GET");
   } catch (_) {
+    console.log("No messaging history found!");
     return;
   }
   return history;
@@ -25,5 +27,15 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <p>Messaging with {{ receiverId }}</p>
+  <h1>Messaging with {{ receiverName }}</h1>
 </template>
+
+<style scoped>
+h1 {
+  padding-top: 1em;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

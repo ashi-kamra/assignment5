@@ -8,6 +8,7 @@ const loaded = ref(false);
 let friends = ref([]);
 
 async function makeWidgets() {
+  console.log(friends);
   let connectionList;
   try {
     connectionList = await fetchy("/api/homepage", "GET");
@@ -22,16 +23,16 @@ onBeforeMount(async () => {
   loaded.value = true;
 });
 
-async function enterMessaging(friend) {
-  console.log("testing");
-  void router.push(`/messaging/${friend._id}`);
+async function enterMessaging(friendName, friendId) {
+  console.log("friend name and id", friendName, friendId);
+  void router.push(`/messaging/${friendName}/${friendId}`);
 }
 </script>
 
 <template>
   <section v-if="loaded && friends.length !== 0">
     <article v-for="friend in friends" :key="friend.user2">
-      <FriendWidget @click="enterMessaging(friend)" :connection_name="friend.username" :connection_id="friend._id" />
+      <FriendWidget @click="enterMessaging(friend.username, friend._id)" :connection_name="friend.username" :connection_id="friend._id" />
     </article>
   </section>
   <section id="loading" v-else if="friends.length === 0">
