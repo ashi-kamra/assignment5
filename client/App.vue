@@ -52,6 +52,7 @@ onBeforeMount(async () => {
 
 <style scoped>
 @import "./assets/toast.css";
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Itim&display=swap");
 
 nav {
   padding: 1em 2em;
@@ -61,6 +62,8 @@ nav {
 }
 
 h1 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
   font-size: 2em;
   margin: 0;
 }
@@ -76,6 +79,7 @@ img {
 }
 
 a {
+  font-family: "Fredoka", sans-serif;
   font-size: large;
   color: black;
   text-decoration: none;

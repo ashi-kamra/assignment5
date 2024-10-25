@@ -5,6 +5,7 @@ import { useUserStore } from "@/stores/user";
 import ConnectorView from "../views/ConnectorView.vue";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
+import MessagingView from "../views/MessagingView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 import SettingView from "../views/SettingView.vue";
 
@@ -26,6 +27,12 @@ const router = createRouter({
       path: "/connector",
       name: "Connector",
       component: ConnectorView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/messaging/:receiver",
+      name: "Messaging",
+      component: MessagingView,
       meta: { requiresAuth: true },
     },
     {

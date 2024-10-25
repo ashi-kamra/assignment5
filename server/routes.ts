@@ -172,7 +172,13 @@ class Routes {
   async homepage(session: SessionDoc) {
     const sessionUser = Sessioning.getUser(session);
     const user = await User.getUserInfo(sessionUser);
-    return await Connecting.displayConnections(user._id);
+    const connections = await Connecting.displayConnections(user._id);
+    const names = [];
+    for (let i = 0; i < connections.length; i++) {
+      names[i] = await User.getUserInfo(connections[i].user2);
+    }
+    console.log("names", names);
+    return names;
     //displaying a users homepage
   }
 
@@ -190,6 +196,15 @@ class Routes {
     console.log("user2 in router", user2);
     return await Connecting.makeConnection(user1._id, user2._id);
     //making a new connection
+  }
+
+  //add another route to display connections?
+  @Router.get("/connection/history/:receiver")
+  async displayMessages(session: SessionDoc, receiver: string) {
+    const sessionUser = Sessioning.getUser(session);
+    const user = await User.getUserInfo(sessionUser);
+    const user2 = await User.getUserbyName(receiver);
+    return await Messaging.displayMessages(user._id, user2._id);
   }
 
   @Router.post("/connection/message")

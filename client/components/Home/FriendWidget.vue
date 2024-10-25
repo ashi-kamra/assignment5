@@ -4,16 +4,17 @@ const props = defineProps(["connection_name", "connection_id"]);
 
 <template>
   <div class="friend-widget">
-    <p>{{ friendName }}</p>
+    <p>{{ props.connection_name }}</p>
   </div>
 </template>
 
 <style scoped>
 .friend-widget {
   display: flex;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin: auto;
+  justify-content: center;
+  border-style: solid;
+  border-radius: 1em;
+  width: 150px;
 }
 </style>

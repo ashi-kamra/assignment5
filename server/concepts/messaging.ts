@@ -17,6 +17,14 @@ export default class MessageConcept {
     void this.messageHistory.collection.createIndex({ message: 1 });
   }
 
+  async displayMessages(sender: ObjectId, receiver: ObjectId) {
+    const messages = await this.messageHistory.readMany({ sender: sender, receiver: receiver });
+    if (!messages) {
+      throw new NotFoundError(`No messages between ${sender} and ${receiver} exist`);
+    }
+    return messages;
+  }
+
   async sendMessage(message: ObjectId, sender: ObjectId, receiver: ObjectId) {
     const _id = this.messageHistory.createOne({ message, sender, receiver });
     return { msg: "Message sent!", _id: await this.messageHistory.readOne({ _id }) }; //can i just put id instead of the readOne?

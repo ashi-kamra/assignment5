@@ -22,9 +22,29 @@ async function delete_() {
 <template>
   <main class="column">
     <h1>Settings for {{ currentUsername }}</h1>
-    <button class="pure-button pure-button-primary" @click="logout">Logout</button>
-    <button class="button-error pure-button" @click="delete_">Delete User</button>
     <UpdateUserForm />
     <DisplayIdComponent />
+    <h2>Login/Delete Account</h2>
+    <button class="pure-button pure-button-primary" @click="logout">Logout</button>
+    <button class="button-error pure-button" @click="delete_">Delete User</button>
   </main>
 </template>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Itim&display=swap");
+
+h1,
+h2,
+button {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+}
+</style>

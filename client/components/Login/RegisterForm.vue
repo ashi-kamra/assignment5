@@ -33,7 +33,10 @@ async function register() {
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Itim&display=swap");
+
 h3 {
+  font-family: "Fredoka", sans-serif;
   display: flex;
   justify-content: center;
 }

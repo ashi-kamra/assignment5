@@ -1,21 +1,11 @@
 <script setup lang="ts">
+import router from "@/router";
 import { fetchy } from "../../utils/fetchy";
 import { onBeforeMount, ref } from "vue";
 import FriendWidget from "@/components/Home/FriendWidget.vue";
 
 const loaded = ref(false);
 let friends = ref([]);
-
-async function getNames(connection) {
-  let name;
-  try {
-    name = await fetchy(`/api/homepage/${connection}`, "GET");
-  } catch (_) {
-    return;
-  }
-  console.log(name);
-  return name.username;
-}
 
 async function makeWidgets() {
   let connectionList;
@@ -24,26 +14,27 @@ async function makeWidgets() {
   } catch (_) {
     return;
   }
-  for (let i = 0; i < connectionList.length; i++) {
-    friend[i] = connection[i].user2;
-  }
-  console.log("friends", friends);
+  friends.value = connectionList;
 }
 
 onBeforeMount(async () => {
   await makeWidgets();
   loaded.value = true;
 });
+
+async function enterMessaging(friend) {
+  console.log("testing");
+  void router.push(`/messaging/${friend._id}`);
+}
 </script>
 
 <template>
-  <p>testing</p>
   <section v-if="loaded && friends.length !== 0">
     <article v-for="friend in friends" :key="friend.user2">
-      <FriendWidget :connection_name="friend.user2" :connection_id="friend._id" />
+      <FriendWidget @click="enterMessaging(friend)" :connection_name="friend.username" :connection_id="friend._id" />
     </article>
   </section>
-  <section v-else if="friends.length === 0">
+  <section id="loading" v-else if="friends.length === 0">
     <p>Loading...</p>
   </section>
 </template>
@@ -52,6 +43,12 @@ onBeforeMount(async () => {
 section {
   display: flex;
   flex-direction: column;
+  margin: auto;
   gap: 1em;
+}
+
+#loading {
+  display: flex;
+  align-items: center;
 }
 </style>
