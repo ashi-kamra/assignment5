@@ -5,7 +5,7 @@ import { BadValuesError, NotAllowedError, NotFoundError } from "./errors";
 export interface ItemDoc extends BaseDoc {
   //itemType
   owner: ObjectId;
-  item: ObjectId;
+  item: string;
   label: string;
 }
 
@@ -18,7 +18,7 @@ export default class LabelConcept {
     void this.items.collection.createIndex({ item: 1 });
   }
 
-  async addLabel(owner: ObjectId, item: ObjectId, label: string) {
+  async addLabel(owner: ObjectId, item: string, label: string) {
     await this.assertGoodLabel(label);
     await this.assertLabelUnique(label);
     const _id = await this.items.createOne({ owner, item, label });
@@ -33,7 +33,7 @@ export default class LabelConcept {
     return items;
   }
 
-  async removeLabel(item: ObjectId) {
+  async removeLabel(item: string) {
     await this.assertHasLabel(item);
     await this.items.deleteOne({ item });
     return { msg: "Label removed successfully!" };
@@ -51,7 +51,7 @@ export default class LabelConcept {
     }
   }
 
-  private async assertHasLabel(message: ObjectId) {
+  private async assertHasLabel(message: string) {
     const item = await this.items.readOne({ message: message });
     if (!item) {
       throw new NotFoundError(`Item does not exist!`);

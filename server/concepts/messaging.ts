@@ -3,7 +3,7 @@ import DocCollection, { BaseDoc } from "../framework/doc";
 import { NotAllowedError, NotFoundError } from "./errors";
 
 export interface MessageDoc extends BaseDoc {
-  message: ObjectId;
+  message: string;
   sender: ObjectId;
   receiver: ObjectId;
 }
@@ -25,12 +25,13 @@ export default class MessageConcept {
     return messages;
   }
 
-  async sendMessage(message: ObjectId, sender: ObjectId, receiver: ObjectId) {
+  async sendMessage(message: string, sender: ObjectId, receiver: ObjectId) {
     const _id = this.messageHistory.createOne({ message, sender, receiver });
     return { msg: "Message sent!", _id: await this.messageHistory.readOne({ _id }) }; //can i just put id instead of the readOne?
   }
 
-  async getMessage(message: ObjectId) {
+  async getMessage(message: string) {
+    //is it okay if its a string????
     const messageObj = await this.messageHistory.readOne({ message: message });
     if (!messageObj) {
       throw new NotFoundError(`Message ${message} does not exist!`);
@@ -38,14 +39,14 @@ export default class MessageConcept {
     return messageObj;
   }
 
-  async delete(_id: ObjectId, user: ObjectId) {
+  async delete(_id: ObjectId, user: ObjectId, message: string) {
     await this.assertUserIsSender(_id, user);
     await this.assertUserIsReceiver(_id, user);
-    await this.messageHistory.deleteOne({ _id });
+    await this.messageHistory.deleteOne({ message });
     return { msg: "Post deleted successfully!" };
   }
 
-  async assertOwner(user: ObjectId, message: ObjectId) {
+  async assertOwner(user: ObjectId, message: string) {
     const messageObj = await this.messageHistory.readOne({ message: message });
     if (!messageObj) {
       throw new NotFoundError(`Message ${messageObj} does not exist!`);

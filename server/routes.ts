@@ -207,17 +207,18 @@ class Routes {
     return await Messaging.displayMessages(user._id, user2._id);
   }
 
-  @Router.post("/connection/message")
-  async message(session: SessionDoc, message: ObjectId, receiver: string) {
+  @Router.post("/connection/message/:receiver")
+  async message(session: SessionDoc, message: string, receiver: string) {
     const sessionUser = Sessioning.getUser(session);
     const user = await User.getUserInfo(sessionUser);
     const user2 = await User.getUserbyName(receiver);
+    console.log("sending message?");
     return await Messaging.sendMessage(message, user._id, user2._id);
     //messaging a connection
   }
 
   @Router.put("/consent")
-  async consentSurvey(session: SessionDoc, message: ObjectId, consent: boolean) {
+  async consentSurvey(session: SessionDoc, message: string, consent: boolean) {
     const sessionUser = Sessioning.getUser(session);
     const user = await User.getUserInfo(sessionUser);
     await Messaging.assertOwner(user._id, message);
@@ -225,13 +226,13 @@ class Routes {
     await Consenting.indicateConsent(content._id, consent, content.sender, content.receiver);
     const userConsent = await Consenting.getConsent(content._id);
     if (userConsent === false) {
-      await Messaging.delete(user._id, message);
+      await Messaging.delete(message, user._id);
     }
     //conducting consent survey
   }
 
   @Router.put("/echo/add")
-  async addEcho(session: SessionDoc, label: string, message: ObjectId) {
+  async addEcho(session: SessionDoc, label: string, message: string) {
     const sessionUser = Sessioning.getUser(session); //which get user do i use??? what is the difference
     const user = await User.getUserInfo(sessionUser);
     await Messaging.assertOwner(user._id, message);
@@ -240,7 +241,7 @@ class Routes {
   }
 
   @Router.delete("/echo/remove") //should i add a query??
-  async removeEcho(session: SessionDoc, message: ObjectId) {
+  async removeEcho(session: SessionDoc, message: string) {
     const sessionUser = Sessioning.getUser(session);
     const user = await User.getUserInfo(sessionUser);
     await Messaging.assertOwner(user._id, message);

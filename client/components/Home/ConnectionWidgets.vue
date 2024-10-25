@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import router from "@/router";
-import { fetchy } from "../../utils/fetchy";
-import { onBeforeMount, ref } from "vue";
 import FriendWidget from "@/components/Home/FriendWidget.vue";
+import router from "@/router";
+import { onBeforeMount, ref } from "vue";
+import { fetchy } from "../../utils/fetchy";
 
 const loaded = ref(false);
 let friends = ref([]);
