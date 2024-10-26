@@ -18,7 +18,12 @@ export default class MessageConcept {
   }
 
   async displayMessages(sender: ObjectId, receiver: ObjectId) {
-    const messages = await this.messageHistory.readMany({ sender: sender, receiver: receiver });
+    const messages = await this.messageHistory.readMany({
+      $or: [
+        { sender: sender, receiver: receiver },
+        { sender: receiver, receiver: sender },
+      ],
+    });
     if (!messages) {
       throw new NotFoundError(`No messages between ${sender} and ${receiver} exist`);
     }
@@ -39,10 +44,10 @@ export default class MessageConcept {
     return messageObj;
   }
 
-  async delete(_id: ObjectId, user: ObjectId, message: string) {
+  async delete(_id: ObjectId, user: ObjectId) {
     await this.assertUserIsSender(_id, user);
     await this.assertUserIsReceiver(_id, user);
-    await this.messageHistory.deleteOne({ message });
+    await this.messageHistory.deleteOne({ _id });
     return { msg: "Post deleted successfully!" };
   }
 

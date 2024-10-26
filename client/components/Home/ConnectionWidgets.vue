@@ -23,7 +23,7 @@ onBeforeMount(async () => {
   loaded.value = true;
 });
 
-async function enterMessaging(friendName, friendId) {
+async function enterMessaging(friendName: string, friendId: string) {
   console.log("friend name and id", friendName, friendId);
   void router.push(`/messaging/${friendName}/${friendId}`);
 }

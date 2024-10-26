@@ -8,6 +8,7 @@ export const useUserStore = defineStore(
   () => {
     const currentUsername = ref("");
     const currentId = ref("");
+    const mongoId = ref("");
 
     const isLoggedIn = computed(() => currentUsername.value !== "");
 

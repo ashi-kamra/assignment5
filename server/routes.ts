@@ -226,7 +226,7 @@ class Routes {
     await Consenting.indicateConsent(content._id, consent, content.sender, content.receiver);
     const userConsent = await Consenting.getConsent(content._id);
     if (userConsent === false) {
-      await Messaging.delete(message, user._id);
+      await Messaging.delete(content._id, user._id);
     }
     //conducting consent survey
   }

@@ -4,6 +4,7 @@ import { fetchy } from "../../utils/fetchy";
 
 let message = ref("");
 const props = defineProps(["connection_name"]);
+const emit = defineEmits(["refreshHistory"]);
 
 const reset = () => {
   message.value = "";
@@ -18,7 +19,7 @@ async function sendMessage(message: string) {
   } catch (_) {
     return;
   }
-  console.log("sending this message", sent);
+  emit("refreshHistory");
   reset();
 }
 </script>
