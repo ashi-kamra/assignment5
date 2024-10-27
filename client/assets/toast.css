@@ -13,7 +13,9 @@
 
 .error {
   background-color: #fa5252;
+  border-color: black;
 }
 .success {
   background-color: #416249;
+  border-color: black;
 }

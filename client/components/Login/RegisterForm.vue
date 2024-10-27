@@ -22,12 +22,12 @@ async function register() {
     <fieldset>
       <div class="pure-control-group">
         <label for="aligned-name">Username</label>
-        <input v-model.trim="username" type="text" id="aligned-name" placeholder="Username" required />
-        <p>You will be given a unique private id to login and make connections with</p>
+        <input v-model.trim="username" type="text" class="aligned-name" placeholder="Username" required />
       </div>
       <div class="pure-controls">
         <button type="submit" class="blue-button">Register</button>
       </div>
+      <p>You will be given a unique private id to login and make connections with</p>
     </fieldset>
   </form>
 </template>
@@ -47,5 +47,12 @@ h3 {
   color: white;
   width: 80px;
   height: 40px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 </style>

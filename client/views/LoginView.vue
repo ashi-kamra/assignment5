@@ -10,3 +10,12 @@ import RegisterForm from "@/components/Login/RegisterForm.vue";
     <LoginForm />
   </main>
 </template>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Itim&display=swap");
+
+h1 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+}
+</style>

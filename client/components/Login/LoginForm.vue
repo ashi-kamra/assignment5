@@ -16,11 +16,11 @@ async function login() {
 
 <template>
   <form class="pure-form pure-form-aligned" @submit.prevent="login">
-    <h2>Please Login</h2>
+    <h3>Please Login</h3>
     <fieldset>
       <div class="pure-control-group">
         <label for="aligned-name">Username</label>
-        <input v-model.trim="username" type="text" id="aligned-name" placeholder="Username" required />
+        <input v-model.trim="username" type="text" class="aligned-name" placeholder="Username" required />
       </div>
       <div class="pure-control-group">
         <label for="aligned-password">Id</label>
