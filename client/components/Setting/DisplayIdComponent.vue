@@ -17,6 +17,7 @@ async function logMessage() {
         show = !show;
         logMessage();
       "
+      class="blue-button"
     >
       Click to see your Id
     </button>
@@ -25,3 +26,12 @@ async function logMessage() {
     </p>
   </main>
 </template>
+
+<style scoped>
+.blue-button {
+  background-color: #0f4c81;
+  border-radius: 5px;
+  color: white;
+  font-family: "Fredoka", sans-serif;
+}
+</style>

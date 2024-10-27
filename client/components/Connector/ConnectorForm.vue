@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import router from "@/router";
 import { useUserStore } from "@/stores/user";
-import { ref } from "vue";
 import { fetchy } from "@/utils/fetchy";
+import { ref } from "vue";
 
 const connection_id = ref("");
 const mutuals = ref([]);
@@ -24,7 +24,7 @@ async function connection() {
     <p>Beware of potential predatory individuals when making connections. Be intentional!</p>
     <form id="form" @submit.prevent="connection">
       <input type="password" v-model.lazy="connection_id" placeholder="Enter an id" />
-      <button type="submit">Make a Connection!</button>
+      <button type="submit" class="blue-button">Make a Connection!</button>
     </form>
   </section>
 </template>
@@ -55,5 +55,13 @@ h3 {
 
 #disclaimer {
   text-align: center;
+}
+
+.blue-button {
+  background-color: #0f4c81;
+  border-radius: 5px;
+  color: white;
+  font-family: "Fredoka", sans-serif;
+  width: auto;
 }
 </style>

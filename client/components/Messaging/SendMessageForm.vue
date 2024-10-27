@@ -37,10 +37,18 @@ p {
 }
 
 .message-box {
-  width: 100vw;
   display: flex;
-  flex-direction: column;
+  font-family: "Fredoka", sans-serif;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+button {
+  margin: 1em;
+  font-family: "Fredoka", sans-serif;
+  justify-content: end;
 }
 </style>

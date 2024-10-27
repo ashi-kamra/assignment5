@@ -26,7 +26,7 @@ async function register() {
         <p>You will be given a unique private id to login and make connections with</p>
       </div>
       <div class="pure-controls">
-        <button type="submit" class="pure-button pure-button-primary">Register</button>
+        <button type="submit" class="blue-button">Register</button>
       </div>
     </fieldset>
   </form>
@@ -39,5 +39,13 @@ h3 {
   font-family: "Fredoka", sans-serif;
   display: flex;
   justify-content: center;
+}
+
+.blue-button {
+  background-color: #0f4c81;
+  border-radius: 5px;
+  color: white;
+  width: 80px;
+  height: 40px;
 }
 </style>

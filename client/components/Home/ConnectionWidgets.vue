@@ -4,11 +4,16 @@ import router from "@/router";
 import { onBeforeMount, ref } from "vue";
 import { fetchy } from "../../utils/fetchy";
 
+interface FriendItem {
+  _id: string;
+  username: string;
+  dateCreated: string;
+}
+
 const loaded = ref(false);
-let friends = ref([]);
+let friends = ref<FriendItem[]>([]);
 
 async function makeWidgets() {
-  console.log(friends);
   let connectionList;
   try {
     connectionList = await fetchy("/api/homepage", "GET");
@@ -16,6 +21,7 @@ async function makeWidgets() {
     return;
   }
   friends.value = connectionList;
+  console.log("friends", friends.value);
 }
 
 onBeforeMount(async () => {
@@ -31,7 +37,7 @@ async function enterMessaging(friendName: string, friendId: string) {
 
 <template>
   <section v-if="loaded && friends.length !== 0">
-    <article v-for="friend in friends" :key="friend.user2">
+    <article v-for="friend in friends" :key="friend.username">
       <FriendWidget @click="enterMessaging(friend.username, friend._id)" :connection_name="friend.username" :connection_id="friend._id" />
     </article>
   </section>

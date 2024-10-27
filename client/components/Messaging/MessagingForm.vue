@@ -4,7 +4,15 @@ import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { fetchy } from "../../utils/fetchy";
 
-let history = ref([]);
+interface HistoryItem {
+  _id: string;
+  message: string;
+  sender: string;
+  receiver: string;
+  dateCreated: string;
+}
+
+let history = ref<HistoryItem[]>([]);
 let loaded = ref(false);
 
 const route = useRoute();
@@ -18,7 +26,6 @@ async function displayHistory() {
     console.log("No messaging history found!");
     return;
   }
-  console.log("message history", history.value);
   return history;
 }
 
@@ -50,7 +57,7 @@ onBeforeMount(async () => {
 }
 
 .sent {
-  background-color: #007aff !important; /* Color for sent messages */
+  background-color: #0f4c81 !important; /* Color for sent messages */
   color: white; /* Text color for sent messages */
   align-self: flex-end; /* Align sent messages to the right */
   border-radius: 10px;
@@ -60,7 +67,7 @@ onBeforeMount(async () => {
 }
 
 .received {
-  background-color: grey;
+  background-color: #808080;
   color: white;
   align-self: flex-start;
   border-radius: 10px;
