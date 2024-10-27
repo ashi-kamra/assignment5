@@ -17,5 +17,6 @@ import RegisterForm from "@/components/Login/RegisterForm.vue";
 h1 {
   font-family: "Fredoka", sans-serif;
   font-weight: 500;
+  font-size: 2.5em;
 }
 </style>
